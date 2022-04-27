@@ -13,6 +13,7 @@
 
   
 // genero i 5 numeri random
+// array numeri random
 let mindNumbers = [];
 
 for (let i = 0; i < 5; i++) {
@@ -31,18 +32,34 @@ setTimeout(function(){
 }, 3000);
 
 // chiedo all'utente di inserire i numeri che ricorda
+// array utente
+let userNumber = [];
 setTimeout(function(){
-    let userNumber = [];
     for (let i = 0; i < mindNumbers.length; i++) {
         userNumber.push(parseInt(prompt`Inserisci un numero che ricordi`));
     }
     console.log(userNumber);
 
+    // confronto i 2 array per vedere i numeri indovinati
+    // array confronto
+    let numberFound = [];
+    for (let i = 0; i < mindNumbers.length; i++) {
+        const thisNumber = mindNumbers[i];
+        console.log(thisNumber);
+        if (userNumber.includes(thisNumber)) {
+            numberFound.push(thisNumber);
+        } 
+    }
+
+    console.log(numberFound);
+    // stampo i numeri in html
+    const resultNumber = document.getElementById("result");
+    resultNumber.innerHTML = `questi sono i numeri che hai indovinato : ${numberFound}`;
 }, 3000);
+
 
 
 // function random 
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)  ) + min;
 }
-
